@@ -1,6 +1,1 @@
-echo "# Simula-o-de-cart-rio---Trabalho-de-Estruturas-de-Dados-e-Algoritmos-I" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/TheDigitalPumpkin/Simula-o-de-cart-rio---Trabalho-de-Estruturas-de-Dados-e-Algoritmos-I.git
-git push -u origin master
+Uma simulação de cartório em C, utilizando diversos tipos abstratos de dados como Filas de prioridade, Listas Encadeadas, Pilhas, etc.
