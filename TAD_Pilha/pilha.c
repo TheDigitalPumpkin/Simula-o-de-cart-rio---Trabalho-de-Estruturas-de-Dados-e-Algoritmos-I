@@ -6,12 +6,14 @@ Pilha* criar_pilha()
 {
 	Pilha* p = (Pilha*) malloc(sizeof(Pilha));
 	
-	if(p == NULL){
+	if(p == NULL)
+	{
 		printf("Memoria Insuficiente\n");
 		return p;
 	}
 	
-	else{
+	else
+	{
 		p->topo = 0;
 		p->total = 0;
 		return p;
