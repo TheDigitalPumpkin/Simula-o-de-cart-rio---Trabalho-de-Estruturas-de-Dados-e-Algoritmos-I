@@ -36,10 +36,7 @@ int pilha_cheia(Pilha* p)
 
 int pilha_vazia(Pilha* p)
 {
-	if(p->topo == 0)
-	return 1;
-	
-	else return 0;
+	return p->topo == 0;
 }
 
 int pilha_tamanho(Pilha *p)
