@@ -12,10 +12,10 @@ Fila* criar_filas(int L)
 		
 		for(i = 0; i < L; i++)
 		{
-			f[i].pr = i;
-			f[i].tamanho = 0;
-			f[i].ini = NULL;
-			f[i].fim = NULL;
+		    f[i].pr = i;
+		    f[i].tamanho = 0;
+		    f[i].ini = NULL;
+		    f[i].fim = NULL;
 		}
 		
 		f->tamanho = L;
@@ -74,10 +74,13 @@ int fila_vazia(Fila* f)
 
 int fila_tamanho(Fila* f)
 {
-	
-	if(f != NULL)
-	return f->total;
-	
+    if(f != NULL)
+    return f->total;
+}
+
+Cliente* fila_front(Fila* f, int prioridade)
+{
+	return f[prioridade].ini->c;
 }
 
 void fila_inserir(Fila* f, int x)
