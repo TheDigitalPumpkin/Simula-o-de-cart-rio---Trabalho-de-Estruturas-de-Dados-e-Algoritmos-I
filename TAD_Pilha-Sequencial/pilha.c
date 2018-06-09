@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include "pilha.h"
 
-Pilha* criar_pilha()
+Pilha* criar_guiches(int qtd_guiches, int qtd_clientes)
 {
-	Pilha* p = (Pilha*) malloc(sizeof(Pilha));
+	Pilha* p = (Pilha*) calloc(qtd_guiches, sizeof(Pilha));
 	
 	if(p == NULL)
 	{
@@ -14,8 +14,15 @@ Pilha* criar_pilha()
 	
 	else
 	{
-		p->topo = 0;
-		p->total = 0;
+		int i = 0;
+		
+		for(i = 0; i < qtd_guiches; i++)
+		{
+			p[i].topo = 0;
+			p[i].total = 0;
+			p[i].num = NULL;
+		}
+		
 		return p;
 	}
 }
