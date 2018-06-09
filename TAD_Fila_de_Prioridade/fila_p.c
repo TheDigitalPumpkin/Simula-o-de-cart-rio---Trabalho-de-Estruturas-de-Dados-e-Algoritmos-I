@@ -24,22 +24,22 @@ No* criar_fila_p()
 
 
 
-No* novo_no_fila_p(int p, int valor)      //Função para inserirmos um novo nó na fila de prioridade
+No* novo_no_fila_p(int p, int valor)      //FunÃ§Ã£o para inserirmos um novo nÃ³ na fila de prioridade
 {
-	No* novo = (No*) malloc(sizeof(No));  //Alocamos um novo nó
-	novo->info = valor;                   //Atribuimos o valor do input do usuário ao campo "info" do novo nó
-	novo->prioridade = p;                 //Atribumos a prioridade 'p' do input do usuário ao novo nó
-	novo->prox = NULL;                    //E fazemos com que o ponteiro para o próximo nó aponte para NULL
+	No* novo = (No*) malloc(sizeof(No));  //Alocamos um novo nÃ³
+	novo->info = valor;                   //Atribuimos o valor do input do usuÃ¡rio ao campo "info" do novo nÃ³
+	novo->prioridade = p;                 //Atribumos a prioridade 'p' do input do usuÃ¡rio ao novo nÃ³
+	novo->prox = NULL;                    //E fazemos com que o ponteiro para o prÃ³ximo nÃ³ aponte para NULL
 	
-	return novo;                          //Retornamos o novo nó criado
+	return novo;                          //Retornamos o novo nÃ³ criado
 }
 
 
 
 
-int fila_p_front(No** cabeca)             //Função que retorna o primeiro elemento da fila
+int fila_p_front(No** cabeca)             //FunÃ§Ã£o que retorna o primeiro elemento da fila
 {
-	return (*cabeca)->info;               //Como a cabeça da lista equivale ao primeiro elemento, retornamos o campo "info" da cabeça
+	return (*cabeca)->info;               //Como a cabeÃ§a da lista equivale ao primeiro elemento, retornamos o campo "info" da cabeÃ§a
 }
 
 
@@ -50,9 +50,9 @@ void imprime_fila_p(No** cabeca)
 	if(fila_p_vazia(&cabeca))             //Caso a fila esteja vazia, imprimimos tal estado
 	printf("Fila de prioridade esta vazia.\n");
 	
-	else                                  //Caso a fila não esteja vazia,
+	else                                  //Caso a fila nÃ£o esteja vazia,
 	{
-		No *aux = (*cabeca);              //Declaramos um nó auxiliar
+		No *aux = (*cabeca);              //Declaramos um nÃ³ auxiliar
 		
 		while(aux != NULL)                //Percorremos a fila de prioridade, imprimindo cada elemento e sua prioridade
 		{
@@ -67,28 +67,46 @@ void imprime_fila_p(No** cabeca)
 
 
 
-void fila_p_retirar(No** cabeca)          //Função para retirar o elemento de maior prioridade da fila, ou seja, a cabeça
+void fila_p_retirar(No** cabeca)          //FunÃ§Ã£o para retirar o elemento de maior prioridade da fila, ou seja, a cabeÃ§a
 {
-	No* excluido = *cabeca;               //Criamos um novo nó e o igualamos a cabeça da fila
-	(*cabeca) = (*cabeca)->prox;          //Fazemos cabeça apontar para o próximo nó, ou seja, a nova cabçea da fila será o próximo nó
-	free(excluido);                       //Por fim, liberamos a antiga cabeça, que agora está em "excluido" da memória
+	No* excluido = *cabeca;               //Criamos um novo nÃ³ e o igualamos a cabeÃ§a da fila
+	(*cabeca) = (*cabeca)->prox;          //Fazemos cabeÃ§a apontar para o prÃ³ximo nÃ³, ou seja, a nova cabÃ§ea da fila serÃ¡ o prÃ³ximo nÃ³
+	free(excluido);                       //Por fim, liberamos a antiga cabeÃ§a, que agora estÃ¡ em "excluido" da memÃ³ria
 }
 
 
 
 
-void fila_p_inserir(No** cabeca, int p, int valor)
-{
-	No *inserido = novo_no_fila_p(p, valor);  //Utilizamos a função de criar nós para criar o novo nó a ser insreido na fila
-	No *inicio = (*cabeca);                   //Criamos um nó auxiliar igual a cabeça da fila
-	
-	while(inicio->prox != NULL && inicio->prox->prioridade < p)  //Percorremos a fila para encontrar a posição correta para inserir o nó
+void fila_p_inserir(Fila *f, int cpf_client, int cpf_terceiro, char op, int prioridade)
+{	
+    int i = 0;
+    
+	for(i = 0; i < f->tamanho; i++)  //Percorremos a fila para encontrar a posiÃ§Ã£o correta para inserir o nÃ³
 	{
-		inicio = inicio->prox;
+		if(f[i].ini->c->pri == prioridade);
+		{
+			Cliente* cliente = (Cliente*) malloc(sizeof(Cliente));
+			cliente->cpf_cliente = cpf_client;
+			cliente->cpf_terceiros = cpf_terceiro;
+			cliente->opr = op;
+			cliente->pri = prioridade;
+			Bloco* novo_cliente = (Bloco*) malloc(sizeof(Bloco));
+			
+			f[i].tamanho++;
+	        novo_cliente->c = cliente;
+			novo_cliente->prox = NULL;
+				
+			if(f[i].ini == NULL)
+			f[i].ini = novo_cliente;
+				
+			else
+			f[i].ini->prox = novo_cliente;
+				
+			f[i].fim = novo_cliente;
+			
+			return;
+		}
 	}
-	
-	inserido->prox = inicio->prox;        //Inserimos o nó na devida posição
-	inicio->prox = inserido;
 }
 
 
