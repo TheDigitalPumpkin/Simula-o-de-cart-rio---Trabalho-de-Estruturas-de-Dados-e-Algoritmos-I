@@ -1,16 +1,17 @@
+#include "fila.h"
 #ifndef PILHA_H
 #define PILHA_H
 #ifndef TAM_PILHA
 #define TAM_PILHA 40
 #endif
 
-struct pilha{
+typedef struct pilha
+{
 	int topo, total;
-	int num[TAM_PILHA];
-};
-typedef struct pilha Pilha;
+	Cliente* num[TAM_PILHA];
+} Pilha;
 
-Pilha* criar_pilha();
+Pilha* criar_guiches(int qtd_guiches, int qtd_clientes);
 void deletar_pilha(Pilha* p);
 int pilha_cheia(Pilha* p);
 int pilha_tamanho(Pilha* p);
