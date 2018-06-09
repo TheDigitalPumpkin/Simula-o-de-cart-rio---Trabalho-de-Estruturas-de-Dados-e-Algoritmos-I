@@ -4,8 +4,8 @@
 
 typedef struct pilha
 {
-	int topo, total;
-	Cliente* num;
+    int topo, total;
+    Cliente* num;
 } Pilha;
 
 Pilha* criar_guiches(int qtd_guiches, int qtd_clientes);
