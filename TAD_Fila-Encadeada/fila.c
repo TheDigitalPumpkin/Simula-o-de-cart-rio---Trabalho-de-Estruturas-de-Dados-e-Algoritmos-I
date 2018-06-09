@@ -2,21 +2,24 @@
 #include <stdio.h>
 #include "fila.h"
 
-Fila* criar_fila()
+Fila* criar_filas(int L)
 {
-	Fila* f = (Fila*) malloc(sizeof(Fila));
+	Fila* f = (Fila*) calloc(L, sizeof(Fila));
 	
-	if(f == NULL)
+	if(f != NULL)
 	{
-		printf("Memoria insuficiente!\n");
-		return f;
-	}
-	
-	else
-	{
-		f->ini = NULL;
-		f->fim = NULL;
-		f->total = 0;
+		int i;
+		
+		for(i = 0; i < L; i++)
+		{
+			f[i].pr = i;
+			f[i].tamanho = 0;
+			f[i].ini = NULL;
+			f[i].fim = NULL;
+		}
+		
+		f->tamanho = L;
+		
 		return f;
 	}
 }
