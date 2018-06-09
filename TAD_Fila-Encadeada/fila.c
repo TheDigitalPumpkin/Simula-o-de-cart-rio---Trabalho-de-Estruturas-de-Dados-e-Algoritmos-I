@@ -112,7 +112,7 @@ void fila_retirar(Fila* f)
 	}
 }
 
-void imprimir_fila(Fila* f)
+void imprimir_fila(Fila* f, int prioridade)
 {
 	if(fila_vazia(f))
 	printf("Fila vazia.\n");
@@ -120,11 +120,22 @@ void imprimir_fila(Fila* f)
 	else
 	{
 		Bloco *aux = f->ini;
+		int i = 0, j = 1;
 		
-		while(aux != NULL)
-		{
-			printf("%d ", aux->info);
-			aux = aux->prox;
+		for(i = 0; i < f->tamanho; i++)
+		{                                           //Falta a verificação de caso a fila de prioridade desejada esteja nula.
+			if(f[i].pr == prioridade)
+			{	
+				printf("Fila %d\n", i);
+				
+				while(aux != NULL)
+				{
+					printf("Cliente %d: ", j);
+					printf("%d %d %c %d\n", aux->c->cpf_cliente, aux->c->cpf_terceiros, aux->c->opr, aux->c->pri);
+					j++;
+					aux = aux->prox;
+				}
+			}
 		}
 		
 		printf("\n");
