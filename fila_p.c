@@ -6,9 +6,8 @@
 
 void fila_p_inserir(Fila *f, int cpf_client, int cpf_terceiro, int prioridade, char op, char d[])
 {	
-    int i = 0;
-    
-	for(i = 0; i < f->total; i++)  //Percorremos a fila para encontrar a posição correta para inserir o nó
+    int i = 1;
+	for(i = 1; i <= f[1].total; i++)  //Percorremos a fila para encontrar a posição correta para inserir o nó
 	{
 		if(f[i].pr == prioridade)
 		{
@@ -23,7 +22,7 @@ void fila_p_inserir(Fila *f, int cpf_client, int cpf_terceiro, int prioridade, c
 			f[i].tamanho++;
 			cliente->prox = NULL;
 				
-			if(f[i].ini == NULL){
+			if(fila_front(f,i) == NULL){
 				f[i].ini = cliente;
 				f[i].fim = f[i].ini;
 			}
@@ -51,4 +50,29 @@ void converte_string(char d[])
 		}
 
 	return;
+}
+
+void retirar_da_fila(Fila* f, int prioridade){
+	Cliente* aux = fila_front(f,prioridade);
+	f[prioridade].ini = f[prioridade].ini->prox;
+	f[prioridade].tamanho--;
+	if(fila_vazia(f,prioridade)){
+		for(aux = f[prioridade].ini ; aux != NULL ;aux = aux->prox){
+			free(aux);
+		}
+	}
+}
+
+int fila_vazia(Fila* f, int x)
+{
+	return fila_tamanho(f,x) == 0;
+}
+
+int fila_tamanho(Fila* f, int prioridade){
+	return f[prioridade].tamanho;
+} 
+
+Cliente* fila_front(Fila* f, int prioridade)
+{
+	return f[prioridade].ini;
 }

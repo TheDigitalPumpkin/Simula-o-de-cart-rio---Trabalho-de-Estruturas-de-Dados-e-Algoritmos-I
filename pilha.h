@@ -11,7 +11,7 @@ typedef struct cliente_sequencial
 
 typedef struct pilha
 {
-	ClienteSequencial* cleiton;
+	ClienteSequencial* vetor_clientes;
 	int topo, total, tamanho;
 	int guiches;
 	
@@ -20,11 +20,11 @@ typedef struct pilha
 void atender_clientes(Pilha* p, Fila* f);
 Pilha* criar_guiches(int qtd_guiches, int qtd_clientes);           //Durante a simulação, serão alocadas M pilhas. 
 void deletar_pilha(Pilha* p);
-int pilha_cheia(Pilha* p);
-int pilha_tamanho(Pilha* p);
+int pilha_vazia(Pilha* p);
+int pilha_tamanho(Pilha* p, int guiche);
 int guiche_vazio(Pilha* p, int guiche);
-void pilha_push(Pilha* p, Fila* f);
-void imprimir_pilha(Pilha* p, int guiche);
-void pilha_pop(Pilha* p, int guiche);
+void pilha_inserir(Pilha* p, ClienteSequencial* c);
+void guiche_pop(Pilha* p, int guiche);
+void pilha_pop(Pilha* p);
 
 #endif

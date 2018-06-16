@@ -16,12 +16,7 @@ typedef struct fila
     int pr;  //pr = prioridade da fila
 } Fila;
 
-
 Fila* criar_filas(int L);
 int fila_cheia(Fila* f);
-int fila_vazia(Fila* f, int x);
-int fila_tamanho(Fila* f);
-Cliente* fila_front(Fila* f, int prioridade);
-void imprimir_fila(Fila* f, int prioridade);
 
 #endif
