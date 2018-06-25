@@ -6,7 +6,7 @@ typedef struct relatorio{
 	char bem[25];
 	char simbolo;
 	struct relatorio* prox;
-}Relatorio;
+} Relatorio;
 
 typedef struct lista 
 {
