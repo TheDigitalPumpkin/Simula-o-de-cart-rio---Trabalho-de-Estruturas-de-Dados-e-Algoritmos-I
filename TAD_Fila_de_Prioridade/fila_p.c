@@ -1,123 +1,86 @@
+//Dupla: Bruno Bacelar e Gabriel Lacerda
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "fila_p.h"
+#include "fila.h"
 
-No* criar_fila_p()
-{
-	No *fila_p = (No*) malloc(sizeof(No));
-	
-	if(fila_p == NULL)
-	{
-		printf("Erro, memoria insuficiente!\n");
-		exit(1);
-	}
-	
-	else
-	{
-		fila_p->info = 0;
-		fila_p->prioridade = 0;
-		fila_p->prox = NULL;
-		return fila_p;
-	}
-}
-
-
-
-
-No* novo_no_fila_p(int p, int valor)      //Função para inserirmos um novo nó na fila de prioridade
-{
-	No* novo = (No*) malloc(sizeof(No));  //Alocamos um novo nó
-	novo->info = valor;                   //Atribuimos o valor do input do usuário ao campo "info" do novo nó
-	novo->prioridade = p;                 //Atribumos a prioridade 'p' do input do usuário ao novo nó
-	novo->prox = NULL;                    //E fazemos com que o ponteiro para o próximo nó aponte para NULL
-	
-	return novo;                          //Retornamos o novo nó criado
-}
-
-
-
-
-int fila_p_front(No** cabeca)             //Função que retorna o primeiro elemento da fila
-{
-	return (*cabeca)->info;               //Como a cabeça da lista equivale ao primeiro elemento, retornamos o campo "info" da cabeça
-}
-
-
-
-
-void imprime_fila_p(No** cabeca)
-{
-	if(fila_p_vazia(&cabeca))             //Caso a fila esteja vazia, imprimimos tal estado
-	printf("Fila de prioridade esta vazia.\n");
-	
-	else                                  //Caso a fila não esteja vazia,
-	{
-		No *aux = (*cabeca);              //Declaramos um nó auxiliar
-		
-		while(aux != NULL)                //Percorremos a fila de prioridade, imprimindo cada elemento e sua prioridade
-		{
-			printf("Elemento %d, com prioridade %d\n", aux->info, aux->prioridade);
-			aux = aux->prox;
-		}
-		
-		printf("\n");
-	}
-}
-
-
-
-
-void fila_p_retirar(No** cabeca)          //Função para retirar o elemento de maior prioridade da fila, ou seja, a cabeça
-{
-	No* excluido = *cabeca;               //Criamos um novo nó e o igualamos a cabeça da fila
-	(*cabeca) = (*cabeca)->prox;          //Fazemos cabeça apontar para o próximo nó, ou seja, a nova cabçea da fila será o próximo nó
-	free(excluido);                       //Por fim, liberamos a antiga cabeça, que agora está em "excluido" da memória
-}
-
-
-
-
-void fila_p_inserir(Fila *f, int cpf_client, int cpf_terceiro, char op, int prioridade)
+void fila_p_inserir(Fila *f, int cpf_client, int cpf_terceiro, int prioridade, char op, char d[])
 {	
-    int i = 0;
-    
-	for(i = 0; i < f->tamanho; i++)  //Percorremos a fila para encontrar a posição correta para inserir o nó
+    int i = 1;
+	for(i = 1; i <= f[1].total; i++)  //Percorremos a fila para encontrar a posição correta para inserir o nó
 	{
-		if(f[i].ini->c->pri == prioridade);
+		if(f[i].pr == prioridade)
 		{
+			converte_string(d);
 			Cliente* cliente = (Cliente*) malloc(sizeof(Cliente));
 			cliente->cpf_cliente = cpf_client;
 			cliente->cpf_terceiros = cpf_terceiro;
 			cliente->opr = op;
 			cliente->pri = prioridade;
-			Bloco* novo_cliente = (Bloco*) malloc(sizeof(Bloco));
+			strcpy(cliente->bem, d);
 			
 			f[i].tamanho++;
-	        novo_cliente->c = cliente;
-			novo_cliente->prox = NULL;
+			cliente->prox = NULL;
 				
-			if(f[i].ini == NULL)
-			f[i].ini = novo_cliente;
-				
+			if(fila_front(f, i) == NULL)
+			{
+				f[i].ini = cliente;
+				f[i].fim = f[i].ini;
+			}
+			
 			else
-			f[i].ini->prox = novo_cliente;
-				
-			f[i].fim = novo_cliente;
+			{
+				f[i].fim->prox = cliente;
+				f[i].fim = f[i].fim->prox;
+			}
 			
 			return;
 		}
 	}
 }
 
-
-
-int fila_p_vazia(No** cabeca)
+void converte_string(char d[])
 {
-	if((*cabeca) == NULL) return 1;
-	
-	else return 0;
+	unsigned int i = 0;
+
+	for(i = 0; i < strlen(d); i++)
+		{
+			if(d[i] >= 97 && d[i] <= 122)
+			d[i] -= 32;
+			
+			if(d[i] == ' ')
+			d[i] = '_';
+		}
+
+	return;
 }
 
+void retirar_da_fila(Fila* f, int prioridade)
+{
+	Cliente* aux = fila_front(f,prioridade);
+	f[prioridade].ini = f[prioridade].ini->prox;
+	f[prioridade].tamanho--;
+	
+	if(fila_vazia(f,prioridade))
+	{
+		for(aux = f[prioridade].ini ; aux != NULL ;aux = aux->prox)
+		{
+			free(aux);
+		}
+	}
+}
 
+int fila_vazia(Fila* f, int x)
+{
+	return fila_tamanho(f, x) == 0;
+}
 
+int fila_tamanho(Fila* f, int prioridade){
+	return f[prioridade].tamanho;
+} 
 
+Cliente* fila_front(Fila* f, int prioridade)
+{
+	return f[prioridade].ini;
+}
