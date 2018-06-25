@@ -65,14 +65,14 @@ int main()
 	printf("\n");
 	
 	ler_fila(f, P);
-    atender_clientes(p, f);
+    	atender_clientes(p, f);
 	relatorio_parcial(p, G);
     
-    gerar_relatorio_final(l, p);
+    	gerar_relatorio_final(l, p);
     
-    free(f);
-    deletar_pilha(p);
-    deletar_lista_dec(l);
+    	free(f);
+    	deletar_pilha(p);
+    	deletar_lista_dec(l);
     
 	return 0;
 }
