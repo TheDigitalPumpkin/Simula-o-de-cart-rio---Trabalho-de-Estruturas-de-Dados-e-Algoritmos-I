@@ -347,8 +347,8 @@ void gerar_relatorio_final(Lista_dec *l, Pilha* p)
 			novo_no->opr = p[i].vetor_clientes[p[i].topo].opr;
 			strcpy(novo_no->bem, p[i].vetor_clientes[p[i].topo].bem);
 		
-		    if(l->tamanho == 0)
-		    inserir_lista_dec_inicio(l, novo_no, 1);
+		    	if(l->tamanho == 0)
+		    	inserir_lista_dec_inicio(l, novo_no, 1);
 					
 			else if(novo_no->cpf_generico >= l->cauda->cpf_generico)
 			inserir_lista_dec_fim(l, novo_no, 1);
@@ -363,7 +363,7 @@ void gerar_relatorio_final(Lista_dec *l, Pilha* p)
 			novo_no2->opr = p[i].vetor_clientes[p[i].topo].opr;
 			strcpy(novo_no2->bem, p[i].vetor_clientes[p[i].topo].bem);
         
-        	if(novo_no2->cpf_generico >= l->cauda->cpf_generico)
+        		if(novo_no2->cpf_generico >= l->cauda->cpf_generico)
 			inserir_lista_dec_fim(l, novo_no2, 2);
 					
 			else if(novo_no2->cpf_generico <= l->cabeca->cpf_generico)
