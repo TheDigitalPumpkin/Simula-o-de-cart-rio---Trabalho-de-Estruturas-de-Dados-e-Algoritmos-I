@@ -2,7 +2,8 @@
 #ifndef LISTA_DEC_H
 #define LISTA_DEC_H
 
-typedef struct relatorio{
+typedef struct relatorio
+{
 	char bem[25];
 	char simbolo;
 	struct relatorio* prox;
