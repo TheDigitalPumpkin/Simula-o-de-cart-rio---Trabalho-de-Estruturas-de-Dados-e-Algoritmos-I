@@ -45,13 +45,13 @@ void converte_string(char d[])
 	unsigned int i = 0;
 
 	for(i = 0; i < strlen(d); i++)
-		{
-			if(d[i] >= 97 && d[i] <= 122)
-			d[i] -= 32;
-			
-			if(d[i] == ' ')
-			d[i] = '_';
-		}
+	{
+		if(d[i] >= 97 && d[i] <= 122)
+		d[i] -= 32;
+		
+		if(d[i] == ' ')
+		d[i] = '_';
+	}
 
 	return;
 }
